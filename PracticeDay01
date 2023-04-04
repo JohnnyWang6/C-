@@ -25,3 +25,34 @@ int main(){
 
     return 0;
 }
+
+7-2 计算代数表达式
+分数 10
+作者 李宁x
+单位 武汉理工大学
+输入x值，根据公式计算y的值。
+
+
+
+输入格式:
+输入角度x（注意：计算时，需将其转换为弧度）。变量数据类型为double。π为3.14159。
+
+输出格式:
+输出y的值，精确到小数点后2位。
+
+输入样例:
+12.3
+输出样例:
+1.69
+
+#include<stdio.h>
+#include<math.h>
+#define PI 3.14159
+int main()
+{
+	double x;
+	scanf("%lf", &x);
+	double y = sqrt((sin(PI / 3) + 1) * (sin(PI / 6) + 1) / cos(x * PI / 180));
+	printf("%.2lf",y);
+	return 0;
+}
