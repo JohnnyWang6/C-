@@ -193,3 +193,40 @@ int main()
     printf("  1  4  6  4  1\n");
     return 0;
 }
+
+
+
+
+7-7 计算物体自由下落的距离
+分数 10
+作者 秦珀石
+单位 武汉理工大学
+一个物体从高空自由落下。编写程序，求它在前t秒内下落的垂直距离。设重力加速度为9.8m/s 
+2
+ 。
+
+输入格式:
+输入一个正整数t
+
+输出格式:
+按照格式
+height = 垂直距离值输出计算结果，
+结果保留2位小数。
+
+输入样例:
+3
+输出样例:
+height = 44.10
+
+#include<stdio.h>
+#include<stdlib.h>
+# include<math.h>
+#define G 9.8
+int main(){
+    int t;
+    scanf("%d",&t);
+    double m = pow(t,2.0);
+    double height = 0.5 * G * m;
+    printf("height = %.2lf",height);
+    return 0;
+}
