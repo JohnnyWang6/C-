@@ -88,3 +88,66 @@ int main(){
     printf("%d",c);
     return 0;
 }
+
+
+7-3 输出英文字母的前驱和后继字母
+分数 10
+作者 李民
+单位 武汉理工大学
+从键盘输入一个英文字母，输出其前驱字母（即前一个字母）、后继字母（即后一个字母）及其ASCII值。比如输入的字母是b，则前驱字母是a，后继字母是c。而如果输入的字母是a，则前驱字母是z，后继字母是b；如果输入的字母是z，则前驱字母是y，后继字母是a。
+
+大写字母的前驱后继字母求法与小写字母相同。
+
+输入格式:
+输入一个英文字母（大写或小写字母）。
+
+输出格式:
+第一行输出该字母的前驱字母及其ASCII值，第二行输出后继字母及其ASCII值，字母与ASCII值之间用一个空格分隔。
+
+输入样例1:
+b
+输出样例1:
+a 97
+c 99
+输入样例2:
+a
+输出样例2:
+z 122
+b 98
+
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+    char x;
+    scanf("%c",&x);
+    if(x == 'a' || x == 'A'){
+        int next1 = x+1;
+        if(x == 'a'){ 
+        char m = 'z';
+        printf("%c %d\n", m, m);
+        printf("%c %d",next1, next1);
+        }else{
+            char m1 = 'Z';
+            printf("%c %d\n",m1,m1);
+            printf("%c %d",next1, next1);
+        }
+    }else if(x == 'z' || x == 'Z'){
+        int i = x-1;
+        if(x == 'z'){ 
+        char next2 = 'a';
+        printf("%c %d\n", i,i);
+        printf("%c %d",next2, next2);
+        }else{
+            char next3 = 'A';
+            printf("%c %d\n", i,i);
+            printf("%c %d",next3, next3);
+        }
+        
+    }else{
+        int o = x-1;
+        int p = x+1;
+        printf("%c %d\n",o,o);
+        printf("%c %d",p,p);
+    }
+    return 0;
+}
