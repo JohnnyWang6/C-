@@ -275,3 +275,44 @@ int main(){
     }
     return 0;
 }
+
+
+
+7-7 计算某年某月某日是该年中的第几天
+分数 10
+作者 李民
+单位 武汉理工大学
+本题要求编写程序，输入一个日期，计算该日期是该年中的第几天。
+
+输入格式:
+在一行中按照格式“yyyy-mm-dd”输入日期，题目保证输入的日期是合法正确的。闰年的判别条件是该年年份能被4整除但不能被100整除、或者能被400整除。
+
+输出格式:
+按格式要求输出日期是该年中的第几天。
+
+输入样例:
+2000-3-2
+输出样例1:
+62
+
+#include<stdio.h>
+int main(){
+    int year,month,day;
+    scanf("%d-%d-%d",&year,&month,&day);
+    int Sum = 0;
+    int arr[] = {31,28,31,30,31,30,31,31,30,31,30,31};
+    for(int i = 0; i<month-1; i++){
+        Sum = Sum+arr[i];
+    }
+    Sum = Sum+day;
+    if(month > 2){ 
+    if((year % 4 == 0 && year % 100 != 0) || year % 400 == 0){
+        printf("%d",Sum+1);
+    }else{
+        printf("%d",Sum);
+    }
+  }else{
+        printf("%d",Sum);
+    }     
+    return 0;
+}
