@@ -183,3 +183,58 @@ int main(){
     }
     return 0;
 }
+
+
+
+7-5 判断BMI指数
+分数 10
+作者 秦珀石
+单位 武汉理工大学
+BMI指数（Body Mass Index，即身体质量指数），是用体重公斤数除以身高米数平方得出的数字，是目前国际上常用的衡量人体胖瘦程度以及是否健康的一个标准。当我们需要比较及分析一个人的体重对于不同高度的人所带来的健康影响时，BMI值是一个中立而可靠的指标。本题要求根据输入的身高与体重，计算对应的BMI指数，并给出相应的结论。
+
+输入格式:
+输入在一行中依次给出2个浮点数，分别对应身高（单位：米）与体重（单位：公斤），中间用空格间隔。
+
+输出格式:
+按如下格式输出对应的BMI指数(保留一位小数)与结论
+
+BMI = BMI计算结果
+结论
+其中结论的输出规则如下：
+
+BMI<18.5，输出"Under Weight"
+18.5 ≤ BMI < 24，输出"Normal"
+24 ≤ BMI < 28，输出"Over Weight"
+28 ≤ BMI < 32，输出"Fat"
+BMI ≥ 32，输出"Too Fat"
+输入样例:
+1.74 76.5
+输出样例:
+BMI = 25.3
+Over Weight
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+
+int main(){
+    float height, weight;
+    float BMI;
+    scanf("%f %f",&height, &weight);
+    BMI = weight / pow(height,2);
+    printf("BMI = %.1f\n", BMI);
+    if(BMI < 18.5){
+        printf("Under Weight");
+    }else if(BMI < 24){
+        printf("Normal");
+    }else if(BMI < 28){
+        printf("Over Weight");
+    }else if(BMI < 32){
+        printf("Fat");
+    }else{
+        printf("Too Fat");
+    }
+    return 0;
+}
