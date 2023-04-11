@@ -356,3 +356,54 @@ int main(){
     }
     return 0;
 }
+
+
+7-9 比较大小
+分数 10
+作者 杨起帆
+单位 浙大城市学院
+本题要求将输入的任意3个整数从小到大输出。
+
+输入格式:
+输入在一行中给出3个整数，其间以空格分隔。
+
+输出格式:
+在一行中将3个整数从小到大输出，其间以“->”相连。
+
+输入样例:
+4 2 8
+输出样例:
+
+
+
+#include<stdio.h>
+int main(){
+    int a,b,c;
+    scanf("%d %d %d",&a,&b,&c);
+    int max;
+    int min;
+    int midian;
+    if(a > b){
+        max = a;
+        min = b;
+        if(c < b){
+            min = c;
+        }
+        if(c > max){
+            max = c;
+        }
+    }else{
+        max = b;
+        min = a;
+        if(c < a){
+            min = c;
+        }
+        if(c > max){
+            max = c;
+        }
+    }
+    midian = a+b+c-max-min;
+    printf("%d->%d->%d",min,midian,max);
+    return 0;
+}
+2->4->8
