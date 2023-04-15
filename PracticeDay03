@@ -38,3 +38,51 @@ int main(){
    printf("sum = %.2lf",sum);
    return 0;
 }
+
+
+
+
+7-2 统计整数的位数
+分数 10
+作者 李民
+单位 武汉理工大学
+从键盘读入一个整数，统计该数的位数。例如，输入12534，输出5；输入-99，输出2；输入0，输出1。
+
+输入格式:
+输入一个整数N(−10 
+5
+ ≤N≤10 
+5
+ )。
+
+输出格式:
+在一行中按如下格式输出该数的位数。
+
+It contains 位数 digits.
+
+输入样例:
+12534
+输出样例:
+It contains 5 digits.
+
+
+#include<stdio.h>
+int main(){
+    int N;
+    //从键盘读入一个整数
+    scanf("%d",&N);
+    //定义位数计数器
+    int count=0;
+    //写一个while循环对N不断除10;统计数位
+    if(N == 0){
+        printf("It contains 1 digits.");
+    }else{ 
+      while(N != 0){
+          N = N/10;
+          count++;
+      }
+        printf("It contains %d digits.",count);
+    }
+    
+    return 0;
+}
