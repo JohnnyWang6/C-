@@ -191,3 +191,46 @@ int main(){
     }
     return 0;
 }
+
+
+
+7-5 评委评分
+分数 15
+作者 秦（ln修改）
+单位 武汉理工大学
+某次比赛有n个评委对参赛选手打分。编程输入各个评委的评分，去掉一个最高分和1个最低分后，输出该选手的平均分。
+
+输入格式:
+输入在第一行中给出正整数n，在第二行给出n个0~10之间的浮点数，用空格分开。
+
+输出格式:
+在一行中输出去掉最高分和最低分之后的平均分，精确到小数点后2位。
+
+输入样例:
+7
+9 8 8.5 7 7.9 9.5 8.9
+输出样例:
+8.46
+
+
+#include<stdio.h>
+int main(){
+    int n;
+    double sum=0.0,average,max=0.0,min=10.0;
+    double a;
+    //给出n个评委
+    scanf("%d",&n);
+    for(int i = 0; i<n; i++){
+        scanf("%lf",&a);
+        sum+=a;
+        if(a>max){
+            max = a;
+        }
+        if(a<min){
+            min = a;
+        }
+   }
+    average = (sum-max-min)/(n-2);
+    printf("%.2lf",average);
+    return 0;
+}
