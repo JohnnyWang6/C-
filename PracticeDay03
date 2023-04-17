@@ -284,3 +284,55 @@ int main(){
     printf("%d %d %d %d %d",countA,countB,countC,countD,countE);
     return 0;
 }
+
+
+
+7-7 简写转全称
+分数 15
+作者 秦珀石
+单位 武汉理工大学
+在一行中输入若干个字符作为简写字符，字符之间没有空格间隔，并按如下规则产生输出：
+
+每个简写字母对应一行输出
+若字符为C或c，则该行输出"BEIJING OLYMPIC GAMES"
+若字符为J或j，则该行输出"JAPAN WORLD CUP"
+若字符为K或k，则该行输出"KOREA WORLD CUP"
+若为其他字符，则该行原样输出该字符。
+输入格式:
+输入在一行中输入若干个字符，字符之间没有空格间隔，以回车结束。
+
+输出格式:
+按题目要求产生若干行输出。
+
+输入样例:
+kijckj
+输出样例:
+KOREA WORLD CUP
+i
+JAPAN WORLD CUP
+BEIJING OLYMPIC GAMES
+KOREA WORLD CUP
+JAPAN WORLD CUP
+
+
+#include <stdio.h>
+ 
+int main(){
+ 
+    char c1;
+    scanf("%c",&c1);
+    if(c1=='C'||c1=='c')printf("BEIJING OLYMPIC GAMES");
+    else if(c1=='J'||c1=='j')printf("JAPAN WORLD CUP");
+    else if(c1=='K'||c1=='k')printf("KOREA WORLD CUP");
+    else printf("%c",c1);
+ 
+    while(1){
+        scanf("%c",&c1);if(c1=='\n')break;
+        if(c1=='C'||c1=='c')printf("\nBEIJING OLYMPIC GAMES");
+        else if(c1=='J'||c1=='j')printf("\nJAPAN WORLD CUP");
+        else if(c1=='K'||c1=='k')printf("\nKOREA WORLD CUP");
+        else printf("\n%c",c1);
+    }
+ 
+return 0;
+}
