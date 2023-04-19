@@ -463,3 +463,44 @@ int main(){
     printf("%d",num);
     return 0;
 }
+
+
+
+7-11 特殊a串数列求和
+分数 15
+作者 颜晖
+单位 浙大城市学院
+给定两个均不超过9的正整数a和n，要求编写程序求a+aa+aaa++⋯+aa⋯a（n个a）之和。
+
+输入格式：
+输入在一行中给出不超过9的正整数a和n。
+
+输出格式：
+在一行中按照“s = 对应的和”的格式输出。
+
+输入样例：
+2 3
+输出样例：
+s = 246
+
+
+
+#include<stdio.h>
+int main(){
+    //定义正整数a,n
+    int a,n,num,s=0;
+    //输入a和n的值
+    scanf("%d %d",&a,&n);
+    for(int i=0;i<n;i++){
+        if(i==0){
+            num=a;
+            s+=num;
+        }else{ 
+            num=num*10+a;
+            s+=num;
+        }
+    }
+    printf("s = %d",s);
+    return 0;
+}
+
