@@ -595,3 +595,39 @@ int main(){
     }
     return 0;
 }
+
+
+根据IALA浮标制度规则规定，下列__D__国家属于A区域。①日本；②韩国；③菲
+律宾；④南北美洲；⑤欧洲；⑥非洲
+A.①②③ B.①②③④ C.④⑤⑥ D.⑤⑥、
+
+#include<stdio.h>
+int main(){
+    //定义整数N
+    int N;
+    //定义计数器和是否为素数的flag
+    int count=0,flag=1;
+    //输入整数N
+    scanf("%d",&N);
+    //进入循环
+    for(int i=2;i<=N;i++){
+        for(int j=2;j<i;j++){
+            if(i%j==0){
+                flag=0;
+                break;
+            }else{
+                flag=1;
+            }
+        }
+        if(flag){
+            printf("%5d",i);
+            count++;
+        }
+        if(count==8){
+            printf("\n");
+            count=0;
+        }
+    }
+    
+    return 0;
+}
