@@ -120,3 +120,50 @@ int main(){
     printf("%d->%d->%d",min,midian,max);
     return 0;
 }
+
+
+7-4 计算火车运行时间
+分数 15
+作者 沈睿
+单位 浙江大学
+本题要求根据火车的出发时间和达到时间，编写程序计算整个旅途所用的时间。
+
+输入格式：
+输入在一行中给出2个4位正整数，其间以空格分隔，分别表示火车的出发时间和到达时间。每个时间的格式为2位小时数（00-23）和2位分钟数（00-59），假设出发和到达在同一天内。
+
+输出格式：
+在一行输出该旅途所用的时间，格式为“hh:mm”，其中hh为2位小时数、mm为2位分钟数。
+
+输入样例：
+1201 1530
+输出样例：
+03:29
+
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+    int startTime,arriveTime,hour1,minute1,hour2,minute2,spendTime;
+    scanf("%d %d",&startTime,&arriveTime);
+    hour1 = startTime/100;
+    minute1 = hour1*60 + startTime%100;
+    hour2 = arriveTime/100;
+    minute2 = hour2*60 + arriveTime%100;
+    spendTime = minute2 - minute1;
+    int spendHour = spendTime/60;
+    int spendMinute = spendTime%60;
+    if(spendHour/10 == 0){
+        if(spendMinute/10 == 0){
+            printf("0%d:0%d",spendHour,spendMinute);
+        }else{
+            printf("0%d:%d",spendHour,spendMinute);
+        }
+    }else{
+        if(spendMinute/10 == 0){
+            printf("%d:0%d",spendHour,spendMinute);
+        }else{
+            printf("%d:%d",spendHour,spendMinute);
+        }
+    }
+
+    return 0;
+}
