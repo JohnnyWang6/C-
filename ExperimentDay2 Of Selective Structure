@@ -167,3 +167,90 @@ int main(){
 
     return 0;
 }
+
+
+7-5 判断输入的字符是哪种类型
+分数 15
+作者 毛薇
+单位 武汉理工大学
+通过键盘输入一个字符，编程判断并输出用户输入的是什么类型的字符。
+
+输入格式:
+输入一个字符。
+
+输出格式:
+在一行中输出该字符是哪种类型的字符。
+
+若用户输入字符为'0'~'9'之一，输出This is a digit.
+若用户输入字符在'A'~'Z'之一，输出This is a capital letter.
+若用户输入字符在'a'~'z'之一，输出This is a small letter.
+其他情况，输出Other character.
+输入样例:
+6
+输出样例:
+This is a digit.
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+    char c;
+    scanf("%c",&c);
+    if(c >= '0' && c <= '9'){
+        printf("This is a digit.");
+    }else if(c >= 'A' && c <= 'Z'){
+        printf("This is a capital letter.");
+    }else if(c >= 'a' && c <= 'z'){
+        printf("This is a small letter.");
+    }else{
+        printf("Other character.");
+    }
+    return 0;
+}
+
+
+
+7-6 两个数的简单计算器
+分数 15
+作者 沈睿
+单位 浙江大学
+本题要求编写一个简单计算器程序，可根据输入的运算符，对2个整数进行加、减、乘、除或求余运算。题目保证输入和输出均不超过整型范围。
+
+输入格式：
+输入在一行中依次输入操作数1、运算符、操作数2，其间以1个空格分隔。操作数的数据类型为整型，且保证除法和求余的分母非零。
+
+输出格式：
+当运算符为+、-、*、/、%时，在一行输出相应的运算结果。若输入是非法符号（即除了加、减、乘、除和求余五种运算符以外的其他符号）则输出ERROR。
+
+输入样例1：
+-7 / 2
+输出样例1：
+-3
+输入样例2：
+3 & 6
+输出样例2：
+ERROR
+
+
+#include<stdio.h>
+#include<stdlib.h>
+int main(){ 
+    int a,b;
+    char c;
+    scanf("%d %c %d",&a,&c,&b);
+    if(c == '+'){
+        printf("%d",a+b);
+    }else if(c == '-'){
+        printf("%d",a-b);
+    }else if(c == '*'){
+        printf("%d",a*b);
+    }else if(c == '/'){
+        printf("%d",a/b);
+    }else if(c == '%'){
+        printf("%d",a%b);
+    }else{ 
+        printf("ERROR");
+    }
+    return 0;
+    }
