@@ -1,0 +1,288 @@
+7-1 求一元二次方程的根
+分数 20
+作者 陈建海
+单位 浙江大学
+本题目要求一元二次方程ax 
+2
+ ＋bx＋c＝0的根，结果保留2位小数。
+
+输入格式:
+输入在一行中给出3个浮点系数a、b、c，中间用空格分开。
+
+输出格式:
+根据系数情况，输出不同结果：
+
+1)如果方程有两个不相等的实数根，则每行输出一个根，先大后小；
+
+2)如果方程有两个不相等复数根，则每行按照格式“实部+虚部i”输出一个根，先输出虚部为正的，后输出虚部为负的；
+
+3)如果方程只有一个根，则直接输出此根；
+
+4)如果系数都为0，则输出"Zero Equation"；
+
+5)如果a和b为0，c不为0，则输出"Not An Equation"。
+
+输入样例1:
+2.1 8.9 3.5
+输出样例1:
+-0.44
+-3.80
+输入样例2:
+1 2 3
+输出样例2:
+-1.00+1.41i
+-1.00-1.41i
+输入样例3:
+0 2 4
+输出样例3:
+-2.00
+输入样例4:
+0 0 0
+输出样例4:
+Zero Equation
+输入样例5:
+0 0 1
+输出样例5:
+Not An Equation
+
+
+#include<stdio.h>
+#include<math.h>
+int main(){
+    //定义三个浮点系数和方程的戴尔塔
+    double a,b,c,p,j,h;
+    //键盘输入三个浮点系数
+    scanf("%lf %lf %lf",&a,&b,&c);
+    if(a==0 && b==0 && c==0){
+        printf("Zero Equation");
+        return 0;
+    }else if(a==0 && b==0 && c!=0){
+        printf("Not An Equation");
+        return 0;
+    }
+    p = b*b-4*a*c;
+    double x1 = (-b+sqrt(p))/(2*a);
+    double x2 = (-b-sqrt(p))/(2*a);
+    if(p > 0){
+        if(a==0 && b!=0){
+            printf("%.2lf\n",-c/b);
+        }else{
+            printf("%.2lf\n",x1);
+            printf("%.2lf\n",x2);
+        }
+    }else if(p == 0){
+        printf("%.2lf\n",x1);
+    }else if(a==0 && b==0 && c!=0){
+        printf("Not An Equation");
+    }else if(a==0){
+        float x = -c/b;
+        printf("%.2f",x);
+    }else if(p<0){
+        j=-b/(2*a);
+		h=sqrt(-p)/(2*a);
+        if(j==0)
+        {
+            printf("%.2f+%.2fi\n",0.0,h);
+            printf("%.2f-%.2fi\n",0.0,h);
+        }
+        else
+        {
+            printf("%.2f+%.2fi\n",j,h);
+            printf("%.2f-%.2fi\n",j,h);
+        }
+    }
+    return 0;
+}
+
+
+7-2 求给定精度的简单交错序列部分和
+分数 15
+作者 C课程组
+单位 浙江大学
+本题要求编写程序，计算序列部分和 1 - 1/4 + 1/7 - 1/10 + ... 直到最后一项的绝对值不大于给定精度eps。
+
+输入格式:
+输入在一行中给出一个正实数eps。
+
+输出格式:
+在一行中按照“sum = S”的格式输出部分和的值S，精确到小数点后六位。题目保证计算结果不超过双精度范围。
+
+输入样例1:
+4E-2
+输出样例1:
+sum = 0.854457
+输入样例2:
+0.02
+输出样例2:
+sum = 0.826310
+
+
+#include<stdio.h>
+int main(){
+    //定义正实数eps
+    double eps,S=1.0;
+    scanf("%lf",&eps);
+    double sum=0.0, i=1.0;
+    int a=1;//用于正负号
+    if(eps >= 1.0){
+        sum = 1.0;
+    }else{
+        while(S > eps){
+            S = 1.0/i;
+            sum = sum + S*a;
+            a*=-1;
+            i+=3;
+        }
+    }
+    printf("sum = %.6lf\n",sum);
+    return 0;
+}
+
+
+
+7-3 大笨钟
+分数 10
+作者 陈越
+单位 浙江大学
+微博上有个自称“大笨钟V”的家伙，每天敲钟催促码农们爱惜身体早点睡觉。不过由于笨钟自己作息也不是很规律，所以敲钟并不定时。一般敲钟的点数是根据敲钟时间而定的，如果正好在某个整点敲，那么“当”数就等于那个整点数；如果过了整点，就敲下一个整点数。另外，虽然一天有24小时，钟却是只在后半天敲1~12下。例如在23:00敲钟，就是“当当当当当当当当当当当”，而到了23:01就会是“当当当当当当当当当当当当”。在午夜00:00到中午12:00期间（端点时间包括在内），笨钟是不敲的。
+
+下面就请你写个程序，根据当前时间替大笨钟敲钟。
+
+输入格式：
+输入第一行按照hh:mm的格式给出当前时间。其中hh是小时，在00到23之间；mm是分钟，在00到59之间。
+
+输出格式：
+根据当前时间替大笨钟敲钟，即在一行中输出相应数量个Dang。如果不是敲钟期，则输出：
+
+Only hh:mm.  Too early to Dang.
+其中hh:mm是输入的时间。
+
+输入样例1：
+19:05
+输出样例1：
+DangDangDangDangDangDangDangDang
+输入样例2：
+07:05
+输出样例2：
+Only 07:05.  Too early to Dang.
+
+
+#include<stdio.h>
+int main(){
+    //定义时间，时分
+    int hour,minute,count;
+    scanf("%d:%d",&hour,&minute);
+    if(hour >= 13 && hour <= 23){
+        count = hour -12;
+        if(minute!=0){
+            count = count+1;
+        }else{
+            count = count;
+        }
+        for(int i=0; i<count; i++){
+            printf("Dang");
+        }
+    }else{
+        printf("Only %02d:%02d.  Too early to Dang.",hour,minute);
+    }
+    return 0;
+}
+
+
+7-4 简单计算器
+分数 20
+作者 张彤彧
+单位 浙江大学
+模拟简单运算器的工作。假设计算器只能进行加减乘除运算，运算数和结果都是整数，四种运算符的优先级相同，按从左到右的顺序计算。
+
+输入格式:
+输入在一行中给出一个四则运算算式，没有空格，且至少有一个操作数。遇等号”=”说明输入结束。
+
+输出格式:
+在一行中输出算式的运算结果，或者如果除法分母为0或有非法运算符，则输出错误信息“ERROR”。
+
+输入样例:
+1+2*10-10/2=
+输出样例:
+10
+
+
+#include<stdio.h>
+int main()
+{
+	char operator=' ';
+	int result, i, flag=0;
+	scanf("%d", &result);
+	while (operator != '=')
+	{
+		scanf("%c", &operator);
+		if (operator == '=')
+			break;
+		scanf("%d", &i);
+		switch (operator)
+		{
+		case '+':result= result+i; break;
+		case '-':result = result-i; break;
+		case '*':result = result*i; break;
+		case '/':if(i == 0){
+            flag = -1;
+        }else{
+            result = result / i;
+            break;
+        }
+		default:flag = -1;
+                break;
+		}
+	}
+	if (flag == -1){ 
+		printf("ERROR");
+    }else{
+	printf("%d", result);
+    }
+	return 0;
+}
+
+
+
+7-5 统计素数并求和
+分数 20
+作者 张彤彧
+单位 浙江大学
+本题要求统计给定整数M和N区间内素数的个数并对它们求和。
+
+输入格式:
+输入在一行中给出两个正整数M和N（1≤M≤N≤500）。
+
+输出格式:
+在一行中顺序输出M和N区间内素数的个数以及它们的和，数字间以空格分隔。
+
+输入样例:
+10 31
+输出样例:
+7 143
+
+#include<stdio.h>
+int main(){
+    int M,N;
+    scanf("%d %d",&M,&N);
+    int count=0,sum=0;
+    if(M == 1){
+        M=2;
+    }
+    for(int i=M; i<=N; i++){
+        int flag=1;
+        for(int j=2; j<i; j++){
+            if(i%j==0){
+                flag = -1;
+                break;
+            }
+        }
+        if(flag == 1 && i!=1){
+                count++;
+                sum=sum+i;
+            }
+    }
+    printf("%d %d",count,sum);
+    
+    return 0;
+}
