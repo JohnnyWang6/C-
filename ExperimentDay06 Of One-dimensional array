@@ -1,0 +1,292 @@
+7-1 逆序存放数组中的数据，并输出指定元素
+分数 15
+作者 孙骏
+单位 武汉理工大学
+本题要求编写程序，将给定的n个整数存入数组中，将数组中的这n个数逆序存放，再按要求输出指定的数组元素。
+
+输入格式:
+在第一行中给出一个正整数n（1≤n≤10）。第二行输入n个整数，用空格分开。第三行输入一个非负整数m（m<n）。
+
+输出格式:
+在一行中输出逆序存放后下标为m的数组元素。行末无空格。
+
+输入样例:
+6
+10 8 1 2 3 4
+2
+输出样例:
+2
+
+
+#include<stdio.h>
+int  main(){
+    //输入正整数n决定数组有几个元素
+    int n,m;
+    scanf("%d",&n);
+    //一、定义两个数组，第一个数组存储最初的数，第二个存储逆序存储之后的数
+    int arr1[n],arr2[n];
+    for(int i=0; i<n; i++){
+        scanf("%d",&arr1[i]);
+    }
+    //二、逆序排列
+    int count=n-1;
+    for(int j=0; j<n; j++){
+        arr2[j]=arr1[count];
+        count--;
+    }
+    //三、输入索引m的值。打印逆序排列后的arr2[m];
+    scanf("%d",&m);
+    printf("%d",arr2[m]);
+    return 0;
+}
+
+
+
+
+7-2 查询水果价格
+分数 15
+作者 C课程组
+单位 浙江大学
+给定四种水果，分别是苹果（apple）、梨（pear）、桔子（orange）、葡萄（grape），单价分别对应为3.00元/公斤、2.50元/公斤、4.10元/公斤、10.20元/公斤。
+
+首先在屏幕上显示以下菜单：
+
+[1] apple
+[2] pear
+[3] orange
+[4] grape
+[0] exit
+用户可以输入编号1~4查询对应水果的单价。当连续查询次数超过5次时，程序应自动退出查询；不到5次而用户输入0即退出；输入其他编号，显示价格为0。
+
+输入格式:
+输入在一行中给出用户连续输入的若干个编号。
+
+输出格式:
+首先在屏幕上显示菜单。然后对应用户的每个输入，在一行中按格式“price = 价格”输出查询结果，其中价格保留两位小数。当用户连续查询次数超过5次、或主动输入0时，程序结束。
+
+输入样例1:
+3 -1 0 2
+输出样例1:
+[1] apple
+[2] pear
+[3] orange
+[4] grape
+[0] exit
+price = 4.10
+price = 0.00
+输入样例2:
+1 2 3 3 4 4 5 6 7 8
+输出样例2:
+[1] apple
+[2] pear
+[3] orange
+[4] grape
+[0] exit
+price = 3.00
+price = 2.50
+price = 4.10
+price = 4.10
+price = 10.20
+
+
+
+#include<stdio.h>
+int main(){
+    //打印菜单
+    printf("[1] apple\n");
+    printf("[2] pear\n");
+    printf("[3] orange\n");
+    printf("[4] grape\n");
+    printf("[0] exit\n");
+    //不断输入编号查询单价
+    int number,i;
+    for (i = 1; i <= 5; i++)
+    {
+        scanf("%d", &number); 
+        if (number == 0)
+            break;
+        else if (number == 1)
+            printf("price = 3.00\n");
+        else if (number == 2)
+            printf("price = 2.50\n");
+        else if (number == 3)
+            printf("price = 4.10\n");
+        else if (number == 4)
+            printf("price = 10.20\n");
+        else
+            printf("price = 0.00\n");
+    }    
+    return 0;
+}
+
+
+
+7-3 交换最小值和最大值
+分数 15
+作者 C课程组
+单位 浙江大学
+本题要求编写程序，先将输入的一系列整数中的最小值与第一个数交换，然后将最大值与最后一个数交换，最后输出交换后的序列。
+
+注意：题目保证最大和最小值都是唯一的。
+
+输入格式：
+输入在第一行中给出一个正整数N（≤10），第二行给出N个整数，数字间以空格分隔。
+
+输出格式：
+在一行中顺序输出交换后的序列，每个整数后跟一个空格。
+
+输入样例：
+5
+8 2 5 1 4
+输出样例：
+1 2 5 4 8 
+
+
+
+#include<stdio.h>
+int main(){
+    //一、输入正整数n，决定数组的元素
+    int n;
+    scanf("%d",&n);
+    int arr[n],min,max,indexMax,indexMin;
+    //二、依次输入元素，找出最大值，最小值
+    for(int i=0; i<n; i++){
+        scanf("%d",&arr[i]);
+    }
+    max=arr[0];
+    min=arr[0];
+    for(int i=0; i<n; i++){
+        if(arr[i]>=max){
+            indexMax=i;
+            max=arr[indexMax];
+        }else if(arr[i]<=min){
+            indexMin=i;
+            min=arr[indexMin];
+        }
+    }
+    //三、先交换最小值和第一个数的位置，再交换最大值和最后一个数的位置
+    int temp;
+    temp=arr[0];
+    arr[0]=arr[indexMin];
+    arr[indexMin]=temp;
+    for(int i=0; i<n; i++){
+        if(arr[i]>=max){
+            indexMax=i;
+            max=arr[indexMax];
+        }else if(arr[i]<=min){
+            indexMin=i;
+            min=arr[indexMin];
+        }
+    }
+    temp=arr[n-1];
+    arr[n-1]=arr[indexMax];
+    arr[indexMax]=temp;
+    //四、输出交换后的排列
+    for(int j=0;j<n;j++){
+        printf("%d ",arr[j]);
+    }
+    
+    
+    return 0;
+}
+
+
+
+7-4 简化的插入排序
+分数 15
+作者 C课程组
+单位 浙江大学
+本题要求编写程序，将一个给定的整数插到原本有序的整数序列中，使结果序列仍然有序。
+
+输入格式：
+输入在第一行先给出非负整数N（<10）；第二行给出N个从小到大排好顺序的整数；第三行给出一个整数X。
+
+输出格式：
+在一行内输出将X插入后仍然从小到大有序的整数序列，每个数字后面有一个空格。
+
+输入样例：
+5
+1 2 4 5 7
+3
+输出样例：
+1 2 3 4 5 7 
+
+
+#include<stdio.h>
+int main()
+{
+    int i,N,X,j;
+    int flag=0;//用来判断X的值是不是比数组中的元素小
+    int arr[11];
+    scanf("%d",&N);
+    for(i=1;i<=N;i++)
+    scanf("%d",&arr[i]);
+    scanf("%d",&X);
+    for(i=1;i<=N;i++){
+        if(X<arr[i]){
+            //把原数组的i索引后面的索引全部向右移一位
+            for(j=N;j>=i;j--){
+                arr[j+1]=arr[j];
+            }
+            //把X的值给到i索引位置
+            arr[i]=X;
+            flag=1;
+            break;
+        }
+    }
+    if(flag==1){
+        for(i=1;i<=N+1;i++)
+        printf("%d ",arr[i]);
+    }else{
+        arr[N+1]=X;
+        for(i=1;i<=N+1;i++)
+        printf("%d ",arr[i]);
+    }
+}
+
+
+
+
+7-5 求整数序列中出现次数最多的数
+分数 15
+作者 张彤彧
+单位 浙江大学
+本题要求统计一个整型序列中出现次数最多的整数及其出现次数。
+
+输入格式：
+输入在一行中给出序列中整数个数N（0<N≤1000），以及N个整数。数字间以空格分隔。
+
+输出格式：
+在一行中输出出现次数最多的整数及其出现次数，数字间以空格分隔。题目保证这样的数字是唯一的。
+
+输入样例：
+10 3 2 -1 5 3 4 3 0 3 2
+输出样例：
+3 4
+
+#include<stdio.h>
+
+int main(){
+    int N;
+    int arr[1010];
+    int max=0;
+    int number;
+    scanf("%d",&N);
+    for(int i=0;i<N;i++){
+        scanf("%d",&arr[i]);
+    }
+    for(int i=0;i<N;i++){
+        int count=0;
+        for(int j=0;j<N;j++){
+            if(arr[i]==arr[j]){
+                count++;
+            }
+        }
+        if(count>max){
+            max=count;
+            number=arr[i];
+        }
+    }
+    printf("%d %d",number,max);
+    return 0;
+}
