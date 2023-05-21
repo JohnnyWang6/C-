@@ -1,0 +1,204 @@
+7-1 奇偶分家
+分数 15
+作者 陈越
+单位 浙江大学
+给定N个正整数，请统计奇数和偶数各有多少个？
+
+输入格式：
+输入第一行给出一个正整N（≤1000）；第2行给出N个非负整数，以空格分隔。
+
+输出格式：
+在一行中先后输出奇数的个数、偶数的个数。中间以1个空格分隔。
+
+输入样例：
+9
+88 74 101 26 15 0 34 22 77
+输出样例：
+3 6
+
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+    //一、给定N的值决定奇数和偶数共有多少个
+    int N,countJi=0,countOu=0,i,num;
+    scanf("%d",&N);
+    //二、统计奇数和偶数分别的个数
+    for(i=0;i<N;i++){
+        scanf("%d ",&num);
+        if(num%2==0){ //如果是偶数就countOu++,否则countJi++
+            countOu++;
+        }else{
+            countJi++;
+        }
+    }
+    //三、输出奇数和偶数的个数
+    printf("%d %d\n",countJi,countOu);
+    return 0;
+}
+
+
+7-2 求交错序列前N项和
+分数 15
+作者 陈建海
+单位 浙江大学
+本题要求编写程序，计算交错序列 1-2/3+3/5-4/7+5/9-6/11+... 的前N项之和。
+
+输入格式:
+输入在一行中给出一个正整数N。
+
+输出格式:
+在一行中输出部分和的值，结果保留三位小数。
+
+输入样例:
+5
+输出样例:
+0.917
+
+
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+    //一、输入正整数N
+    int N,i,p=1;
+    scanf("%d",&N);
+    double sum=0,temp;
+    //二、根据数列的规律进行累加
+    for(i=1;i<=N;i++){
+        temp=i*1.0/(i*2-1);
+        sum+=p*temp;
+        p=-p;
+    }
+    //三、输出sum的值
+    printf("%.3lf\n",sum);
+    return 0;
+}
+
+
+
+7-3 最大公约数和最小公倍数
+分数 15
+作者 张彤彧
+单位 浙江大学
+本题要求两个给定正整数的最大公约数和最小公倍数。
+
+输入格式:
+输入在一行中给出两个正整数M和N（≤1000）。
+
+输出格式:
+在一行中顺序输出M和N的最大公约数和最小公倍数，两数字间以1空格分隔。
+
+输入样例:
+511 292
+输出样例:
+73 2044
+
+
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+    //一、给出两个正整数M和N
+    int M,N,bigger,smaller,i,gongYueShu;
+    scanf("%d %d",&M,&N);
+    //二、判断M和N哪个大
+    if(M>N){
+        bigger=M;
+        smaller=N;
+    }else{
+        bigger=N;
+        smaller=M;
+    }
+    //三、从小的那一个本身开始枚举求出最大公约数，最大公倍数就等于M*N/最大公约数
+    for(i=smaller;i>0;i--){
+        if(smaller%i==0&&bigger%i==0){
+            gongYueShu=i;
+            printf("%d %d\n",gongYueShu,M*N/gongYueShu);
+            return 0;
+        }
+    }
+    return 0;
+}
+
+
+
+7-4 统计字符
+分数 15
+作者 颜晖
+单位 浙大城市学院
+本题要求编写程序，输入10个字符，统计其中英文字母、空格或回车、数字字符和其他字符的个数。
+
+输入格式:
+输入为10个字符。最后一个回车表示输入结束，不算在内。
+
+输出格式:
+在一行内按照
+
+letter = 英文字母个数, blank = 空格或回车个数, digit = 数字字符个数, other = 其他字符个数
+的格式输出。
+
+输入样例:
+aZ &
+09 Az
+输出样例:
+letter = 4, blank = 3, digit = 2, other = 1
+
+
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+    //一、输入10个字符并观察其是什么类型
+    char c;
+    int i,letter=0,blank=0,digit=0,other=0;
+    for(i=0;i<10;i++){
+        scanf("%c",&c);
+        if(c>='a'&&c<='z'){
+            letter++;
+        }else if(c>='A'&&c<='Z'){
+            letter++;
+        }else if(c==' '||c=='\n'){
+            blank++;
+        }else if(c>='0'&&c<='9'){
+            digit++;
+        }else{
+            other++;
+        }
+    }
+    //二、根据题意打印数据
+    printf("letter = %d, blank = %d, digit = %d, other = %d\n",letter,blank,digit,other);
+    return 0;
+}
+
+
+
+7-5 寻找250
+分数 15
+作者 陈越
+单位 浙江大学
+
+
+对方不想和你说话，并向你扔了一串数…… 而你必须从这一串数字中找到“250”这个高大上的感人数字。
+
+输入格式：
+输入在一行中给出不知道多少个绝对值不超过1000的整数，其中保证至少存在一个“250”。
+
+输出格式：
+在一行中输出第一次出现的“250”是对方扔过来的第几个数字（计数从1开始）。题目保证输出的数字在整型范围内。
+
+输入样例：
+888 666 123 -233 250 13 250 -222
+输出样例：
+5
+
+
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+    //一、输入一串数字知道输入的数字是250
+    int num=0,count=0;
+    while(num!=250){
+        scanf("%d ",&num);
+        count++;
+    }
+    //二、打印250是第几个数字
+    printf("%d\n",count);
+    return 0;
+}
