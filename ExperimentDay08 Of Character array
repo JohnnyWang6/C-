@@ -1,0 +1,237 @@
+7-1 字符串替换
+分数 15
+作者 C课程组
+单位 浙江大学
+本题要求编写程序，将给定字符串中的大写英文字母按以下对应规则替换：
+
+原字母	对应字母
+A	Z
+B	Y
+C	X
+D	W
+…	…
+X	C
+Y	B
+Z	A
+输入格式：
+输入在一行中给出一个不超过80个字符、并以回车结束的字符串。
+
+输出格式：
+输出在一行中给出替换完成后的字符串。
+
+输入样例：
+Only the 11 CAPItaL LeTtERS are replaced.
+输出样例：
+Lnly the 11 XZKRtaO OeGtVIH are replaced.
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int main(){
+    char str[81]="";
+    int i;
+    gets(str);
+    for(i=0;i<strlen(str);i++){
+        if(str[i]>='A'&&str[i]<='Z'){
+            str[i]='A'+'Z'-str[i];
+        }
+    }
+    puts(str);
+    return 0;
+}
+
+
+
+7-2 IP地址转换
+分数 15
+作者 C课程组
+单位 浙江大学
+一个IP地址是用四个字节（每个字节8个位）的二进制码组成。请将32位二进制码表示的IP地址转换为十进制格式表示的IP地址输出。
+
+输入格式：
+输入在一行中给出32位二进制字符串。
+
+输出格式：
+在一行中输出十进制格式的IP地址，其由4个十进制数组成（分别对应4个8位的二进制数），中间用“.”分隔开。
+
+输入样例：
+11001100100101000001010101110010
+输出样例：
+204.148.21.114
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+int main(){
+    char s[33];
+    gets(s);
+    int num[10],j=0,sum=0,count=0,i;
+    for(i=31; i>=0; i--){
+        if(s[i]=='1'){
+            sum+=pow(2,count);
+        }
+        count++;
+        if(count%8==0){
+            num[j]=sum;
+            j++;
+            count=0;
+            sum=0;
+        }
+    }
+    for(i=3;i>=0;i--){
+        printf("%d",num[i]);
+        if(i!=0){
+            printf(".");
+        }
+    }
+    return 0;
+}
+
+
+7-3 组个最小数
+分数 15
+作者 曹鹏
+单位 Google
+给定数字0-9各若干个。你可以以任意顺序排列这些数字，但必须全部使用。目标是使得最后得到的数尽可能小（注意0不能做首位）。例如：给定两个0，两个1，三个5，一个8，我们得到的最小的数就是10015558。
+
+现给定数字，请编写程序输出能够组成的最小的数。
+
+输入格式：
+输入在一行中给出10个非负整数，顺序表示我们拥有数字0、数字1、……数字9的个数。整数间用一个空格分隔。10个数字的总个数不超过50，且至少拥有1个非0的数字。
+
+输出格式：
+在一行中输出能够组成的最小的数。
+
+输入样例：
+2 2 0 0 0 3 0 0 1 0
+输出样例：
+10015558
+
+
+
+#include<stdio.h>
+int main(){
+    int i,j,num[9];
+    for(i=0;i<10;i++){
+        scanf("%d",&num[i]);
+    }
+    for(i=1;i<10;i++){
+        if(num[i]){
+            printf("%d",i);
+            num[i]--;
+            break;
+        }
+    }
+    for(i=0;i<10;i++){
+        while(num[i]){
+            printf("%d",i);
+            num[i]--;
+        }
+    }
+    return 0;
+}
+
+
+7-4 找最长的字符串
+分数 15
+作者 张泳
+单位 浙大城市学院
+本题要求编写程序，针对输入的N个字符串，输出其中最长的字符串。
+
+输入格式：
+输入第一行给出正整数N；随后N行，每行给出一个长度小于80的非空字符串，其中不会出现换行符，空格，制表符。
+
+输出格式：
+在一行中用以下格式输出最长的字符串：
+
+The longest is: 最长的字符串
+如果字符串的长度相同，则输出先输入的字符串。
+
+输入样例：
+5
+li
+wang
+zhang
+jin
+xiang
+输出样例：
+The longest is: zhang
+
+
+#include<stdio.h>
+#include<string.h>
+int main(){
+    //一、输入正整数N决定有多少个字符串。
+    int N;
+    scanf("%d",&N);
+    char arr[80],smax[80];
+    scanf("%s",&arr);
+    strcpy(smax,arr);
+    for(int i=0; i<N-1; i++){
+        scanf("%s\n",&arr);
+        if(strlen(arr)>strlen(smax)){
+            strcpy(smax,arr);
+        }
+    }
+    printf("The longest is: %s",smax);
+    return 0;
+}
+
+
+7-5 英文单词排序
+分数 15
+作者 张泳
+单位 浙大城市学院
+本题要求编写程序，输入若干英文单词，对这些单词按长度从小到大排序后输出。如果长度相同，按照输入的顺序不变。
+
+输入格式：
+输入为若干英文单词，每行一个，以#作为输入结束标志。其中英文单词总数不超过20个，英文单词为长度小于10的仅由小写英文字母组成的字符串。
+
+输出格式：
+输出为排序后的结果，每个单词后面都额外输出一个空格。
+
+输入样例：
+blue
+red
+yellow
+green
+purple
+#
+输出样例：
+red blue green yellow purple 
+
+
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char s[20][10];
+	char String[10];
+	int i=0,j,k;
+	for (i=0;i<20;i++)
+	{
+		gets(s[i]);
+		if(strcmp(s[i],"#")==0)
+		break;
+	}
+	for(j=0;j<i-1;j++)
+	{
+		for(k=j+1;k<=i-1;k++)
+		{
+			if (strlen(s[j])>strlen(s[k]))
+			{
+				strcpy(String,s[j]);
+				strcpy(s[j],s[k]);
+				strcpy(s[k],String);
+			}
+		}
+	}
+	for(j=0;j<i;j++)
+	{
+		printf("%s ",s[j]);
+	}
+	return 0;
+}
